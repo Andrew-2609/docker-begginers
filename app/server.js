@@ -11,12 +11,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
-  });
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 app.get('/profile-picture', function (req, res) {
   let img = fs.readFileSync(path.join(__dirname, "images/profile-1.jpg"));
-  res.writeHead(200, {'Content-Type': 'image/jpg' });
+  res.writeHead(200, { 'Content-Type': 'image/jpg' });
   res.end(img, 'binary');
 });
 
@@ -44,7 +44,7 @@ app.post('/update-profile', function (req, res) {
     let myquery = { userid: 1 };
     let newvalues = { $set: userObj };
 
-    db.collection("users").updateOne(myquery, newvalues, {upsert: true}, function(err, res) {
+    db.collection("users").updateOne(myquery, newvalues, { upsert: true }, function (err, res) {
       if (err) throw err;
       client.close();
     });
@@ -76,5 +76,5 @@ app.get('/get-profile', function (req, res) {
 });
 
 app.listen(3000, function () {
-  console.log("app listening on port 3000!");
+  console.log("app listening on port 3000! :)");
 });
